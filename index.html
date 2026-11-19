@@ -10,11 +10,30 @@
 
   <body>
     <header>
-      <img src="/myndir/bokavefurinn.svg" alt="Bókavefurinn" width="50">
-      <h1>Bókavefurinn</h1>
-    </header>
-    <main>
+      <div class="header">
+        <a href="/">
+          <img src="/myndir/bokavefurinn.svg" alt="Bókavefurinn" width="50">
+        </a>
+        <h1>Bókavefurinn</h1>
+      </div>
 
+      <nav>
+        <ul>
+          <li>
+            <a href ="/">Forsíða</a>
+          </li>
+          <li>
+            <a href="?page=baekur">Bókasafnið mitt</a>
+          </li>
+          <li>
+            <a href="?page=baeta-bok">Bæta við bók</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <!-- útfært í javascript -->
     </main>
 
     <footer>
@@ -35,13 +54,10 @@
           <h2>Flýtileiðir</h2>
           <ul>
             <li>
-              <a href="#">Bókasafnið mitt</a>
+              <a href="?page=baekur">Bókasafnið mitt</a>
             </li>
             <li>
-              <a href="#">Bæta við bók</a>
-            </li>
-            <li>
-              <a href="#">Mínar bækur</a>
+              <a href="?page=baeta-bok">Bæta við bók</a>
             </li>
           </ul>
         </section>
@@ -60,12 +76,17 @@
             </li>
           </ul>
         </section>
+        </div>
 
-        <section>
+        <div class="footer-bottom">
+          <div class="footer-brand">
+            <a href="/">
+              <img src="/myndir/bokavefurinn.svg" alt="" width="30">
+            </a>
+            <span>Bókavefurinn</span>
+          </div>
           <p>&copy; 2026 Bókavefurinn. Öll réttindi áskilin. </p>
-        </section>
-
-      </div>
+        </div>  
     </footer>
 
   </body>
