@@ -72,7 +72,7 @@ document.addEventListener('click', (event) => {
 
   // kemur í veg fyrir að bækur detta út ef skipt er á milli síða
   if (!link) return;
-  if (!link || link.origin !== window.location.origin) return;
+  if (link.origin !== window.location.origin) return;
   if (link.pathname !== window.location.pathname) return;
 
   event.preventDefault();

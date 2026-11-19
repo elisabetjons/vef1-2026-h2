@@ -46,21 +46,3 @@ export function empty(element) {
     element.removeChild(element.firstChild);
   }
 }
-
-/**
- * Setur texta í element sem passar við `selector`.
- * Skilar `true` ef gekk, annars `false` (element fannst ekki).
- * @param {string} selector CSS selector
- * @param {string} text Texti
- * @returns {boolean}
- */
-export function setText(selector, text) {
-  const element = document.querySelector(selector);
-
-  if (!element) {
-    return false;
-  }
-
-  element.textContent = text;
-  return true;
-}

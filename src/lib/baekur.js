@@ -35,23 +35,27 @@ export function showBooks(sortBy = '') {
     const sortedBooks = [...books];
 
     if (sortBy === 'title') {
-        sortedBooks.sort((a,b) => a.title.localeCompare(b.title));
+        sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
     }else if (sortBy === 'author') {
-        sortedBooks.sort((a,b) => a.author.localeCompare(b.author));
+        sortedBooks.sort((a, b) => a.author.localeCompare(b.author));
     }else if (sortBy === 'rating') {
-        sortedBooks.sort((a,b) => (b.rating || 0) - (a.rating || 0));
+        sortedBooks.sort((a, b) => {
+            if (a.rating === null && b.rating === null) return 0;
+            if (a.rating === null) return 1; 
+            if (b.rating === null) return -1; 
+            return b.rating - a.rating; 
+        }); 
     }
 
     for (const book of sortedBooks) {
         const card = el('article', {
             class: 'book-card',
-            tabindex: '0',
         });
 
         // placeholder bókakápa 
         const cover = el('img', {
             src: './myndir/bookCoverPlaceholder.svg', 
-            alt: `Bókakáða fyrir ${book.title}`,
+            alt: `Bókakápa fyrir ${book.title}`,
             class: 'book-cover',
         });
 
@@ -59,11 +63,19 @@ export function showBooks(sortBy = '') {
         const author = el('p', {}, book.author);
 
         const rating = el('div', {class: 'book-rating'});
-        for (let i=1; i<=5; i++){
-            const star = el(
-                'span', {class: i<=(book.rating || 0) ? 'star-filled' : 'star-empty'}, '★'); 
-                rating.appendChild(star); 
+        for (let i = 1; i <= 5; i++) {
+            let starClass = 'star-empty';
+
+            if (book.rating >= i) {
+                starClass = 'star-filled';
+            } else if (book.rating >= i - 0.5) {
+                starClass = 'star-half';
+            }
+
+            const star = el('span', {class: starClass}, '★');
+            rating.appendChild(star);
         }
+
         card.appendChild(cover);
         card.appendChild(title);
         card.appendChild(author);
@@ -80,7 +92,7 @@ export function showBooks(sortBy = '') {
 
     sortSelect.addEventListener('change', () => {
         showBooks(sortSelect.value);
-    })
+    });
 }
 
 // sýnir upplýsingar um valda bók
@@ -95,13 +107,13 @@ function showBookDetails(book) {
     main.appendChild(author);
 
     // einkunn
-    const ratingLabel = el('label', {for: 'rating'}, 'Einkunn (1–5)');
+    const ratingLabel = el('label', {for: 'rating'}, 'Einkunn (0–5)');
     const ratingInput = el('input', {
         type: 'number',
         id: 'rating',
-        min: '1',
+        min: '0',
         max: '5',
-        step: '1',
+        step: '0.5',
         value: book.rating ?? '',
     });
     main.appendChild(ratingLabel);
@@ -123,10 +135,16 @@ function showBookDetails(book) {
 
     saveButton.addEventListener('click', () => {
         const rating = ratingInput.value;
+        const numericRating = Number(rating);
 
-        if (rating !== '' && (Number(rating) < 1 || Number(rating) > 5)) {
-            alert('Einkunn þarf að vera á bilinu 1–5.');
-            return;
+        if (rating !== '' && (
+            numericRating < 0 ||
+            numericRating > 5 ||
+            numericRating * 2 % 1 !== 0
+            )
+        ) {
+            alert('Einkunn þarf að vera á milli 0-5'); 
+            return; 
         }
 
         book.rating = rating === '' ? null : Number(rating);
