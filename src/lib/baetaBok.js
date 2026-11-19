@@ -1,7 +1,10 @@
 import { el, empty } from './elements.js';
 import { books, showBooks } from './baekur.js';
 
-// býr til form til að bæta við bók
+/**
+ * Býr til form til að bæta við bók í bókasafn.
+ * Bókin er vistuð í books-fylkið.
+ */
 export function addBook() {
     const main = document.querySelector('#main-content'); 
     empty(main); 

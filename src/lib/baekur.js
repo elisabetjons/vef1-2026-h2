@@ -3,7 +3,11 @@ import { el, empty } from './elements.js';
 // birtir books fylkið
 export const books = []; 
 
-// Birtir allar bækur í bókasafninu
+/**
+ * Birtir allar bækur í bókasafninu.
+ * @param {String} sortBy Röun bóka eftir titil, höfund eða einkunn.
+ * @returns 
+ */
 export function showBooks(sortBy = '') {
     const main = document.querySelector('#main-content');
 
@@ -95,7 +99,11 @@ export function showBooks(sortBy = '') {
     });
 }
 
-// sýnir upplýsingar um valda bók
+/**
+ * Birtir upplýsingar um valda bók og gerir notanda kleift að 
+ * breyta einkunn, umsögn eða eyða bókinni.
+ * @param {Object} book Bókin sem á að birta
+ */
 function showBookDetails(book) {
     const main = document.querySelector('#main-content');
     empty(main);
