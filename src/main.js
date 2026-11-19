@@ -1,3 +1,3 @@
-import { showScreen } from "./lib/ui.js";
+import { showScreen } from './lib/ui.js';
 
 showScreen();

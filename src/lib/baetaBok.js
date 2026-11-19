@@ -1,7 +1,7 @@
-import {el, empty} from './elements.js';
+import { el, empty } from './elements.js';
 import { books, showBooks } from './baekur.js';
 
-// bæyr til form til að bæta við bók
+// býr til form til að bæta við bók
 export function addBook() {
     const main = document.querySelector('#main-content'); 
     empty(main); 
@@ -36,10 +36,18 @@ export function addBook() {
     form.addEventListener('submit', (event) => {
         event.preventDefault(); 
 
+        const title = titleInput.value.trim(); 
+        const author = authorInput.value.trim(); 
+
+        if (!title || !author) {
+            alert('Vinsamlegast sláðu inn höfund og titil á bók');
+            return;  
+        }
+
         const newBook = {
             id: Date.now(),
-            title: titleInput.value.trim(),
-            author: authorInput.value.trim(),
+            title,
+            author,
             rating: null,
             review: '', 
         };
