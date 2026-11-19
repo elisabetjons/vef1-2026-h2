@@ -2,7 +2,10 @@ import { el, empty } from './elements.js';
 import { addBook } from './baetaBok.js';
 import { showBooks } from './baekur.js';
 
-// Forsíðan 
+/**
+ * Býr til og birtir forsíðuna.
+ * @returns 
+ */
 export function homePage() {
   const main = document.querySelector('#main-content');
 
@@ -48,7 +51,10 @@ export function homePage() {
   main.appendChild(buttons);
 }
 
-// Fall til að sýna skjá
+/**
+ * Fall til að sýna réttan skjá.
+ * @returns 
+ */
 export function showScreen() {
   const params = new URLSearchParams(window.location.search);
   const page = params.get('page');
