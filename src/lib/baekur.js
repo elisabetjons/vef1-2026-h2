@@ -48,6 +48,13 @@ export function showBooks(sortBy = '') {
             tabindex: '0',
         });
 
+        // placeholder bókakápa 
+        const cover = el('img', {
+            src: './myndir/bookCoverPlaceholder.svg', 
+            alt: `Bókakáða fyrir ${book.title}`,
+            class: 'book-cover',
+        });
+
         const title = el('h3', {}, book.title);
         const author = el('p', {}, book.author);
 
@@ -57,7 +64,7 @@ export function showBooks(sortBy = '') {
                 'span', {class: i<=(book.rating || 0) ? 'star-filled' : 'star-empty'}, '★'); 
                 rating.appendChild(star); 
         }
-
+        card.appendChild(cover);
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(rating);
