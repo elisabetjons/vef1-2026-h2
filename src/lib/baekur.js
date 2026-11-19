@@ -58,7 +58,7 @@ export function showBooks(sortBy = '') {
 
         // placeholder bókakápa 
         const cover = el('img', {
-            src: './myndir/bookCoverPlaceholder.svg', 
+            src: '/myndir/bookCoverPlaceholder.svg', 
             alt: `Bókakápa fyrir ${book.title}`,
             class: 'book-cover',
         });
